@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "nyc": "nyc report --reporter=text-lcov",
     "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls"
   },
   "author": "Alberto Pumar Jiménez",
