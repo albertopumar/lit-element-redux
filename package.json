@@ -26,5 +26,12 @@
     "babel-jest": "^25.1.0",
     "coveralls": "^3.0.9",
     "jest": "^25.1.0"
-  }
+  },
+  "keywords": [
+    "lit-element",
+    "redux",
+    "connect",
+    "connector",
+    "lit-element redux connector"
+  ]
 }
