@@ -1,5 +1,9 @@
 import actions from './actions.js';
 
-const { increment, decrement } = actions;
+const { decrement } = actions;
+
+const increment = () => dispatch => {
+  dispatch(actions.increment());
+}
 
 export default { increment, decrement };
