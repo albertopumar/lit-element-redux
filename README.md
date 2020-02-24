@@ -1,11 +1,11 @@
 # Lit Element Redux
 Redux connector for lit-element components. Create the store and connect your lit-element components using Redux standards.
 
-
 [![npm version](https://img.shields.io/npm/v/lit-element-redux?style=flat-square)](https://www.npmjs.com/package/lit-element-redux)
-[![npm downloads](https://img.shields.io/npm/dm/lit-element-redux?style=flat-square)](https://www.npmjs.com/package/lit-element-redux)
+[![travis build](https://img.shields.io/travis/com/albertopumar/lit-element-redux?style=flat-square)](https://travis-ci.com/albertopumar/lit-element-redux)
 [![npm license](https://img.shields.io/npm/l/lit-element-redux?style=flat-square)](https://www.npmjs.com/package/lit-element-redux)
-
+[![coverage status](https://img.shields.io/coveralls/github/albertopumar/lit-element-redux?style=flat-square)](https://coveralls.io/github/albertopumar/lit-element-redux)
+[![dependencies status](https://img.shields.io/david/albertopumar/lit-element-redux?style=flat-square)](https://david-dm.org/albertopumar/lit-element-redux)
 
 # Overview
 Create the store using the connector's function ``createStore`` in order to make Redux ``store`` available for all the connected components:

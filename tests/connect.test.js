@@ -1,5 +1,4 @@
-import { combineReducers } from 'redux'
-
+import { combineReducers } from 'redux';
 import connect from '../src/connect';
 import createStore from '../src/createStore';
 import counterReducer, { operations } from './__mocks__';
@@ -20,7 +19,7 @@ describe("createStore test", () => {
 
     // Connect a javascript class to the store
     const mapStateToProps = store => ({
-      counter: store.counter,
+      counter: store.counter
     });
     const mapDispatchToProps = { ...operations };
     const mapDispatchToPropsFunction = dispatch => ({
@@ -28,7 +27,7 @@ describe("createStore test", () => {
       decrement: () => dispatch(operations.decrement())
     });
 
-    class MyTestClass { }
+    class MyTestClass {}
 
     ConnectedClassObject = connect(mapStateToProps, mapDispatchToProps)(MyTestClass);
     mockConnectedClassObject = new ConnectedClassObject();

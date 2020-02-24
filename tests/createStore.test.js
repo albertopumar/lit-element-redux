@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import createStore, { getStore } from '../src/createStore';
-import counterReducer from './mock';
+import counterReducer from './__mocks__';
 
-describe("createStore test", () => {
+describe('createStore test', () => {
   beforeAll(() => {
     // Initialize the store before running all the tests
     const rootReducer = combineReducers({ counter: counterReducer });
@@ -20,7 +20,7 @@ describe("createStore test", () => {
     // Retrieve the store and check if it has proper structure
     const store = getStore();
 
-    const expectedStore = { counter: 0 }
+    const expectedStore = { counter: 0 };
     expect(store.getState()).toMatchObject(expectedStore);
   });
 });
