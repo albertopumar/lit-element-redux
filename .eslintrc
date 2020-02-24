@@ -1,0 +1,53 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "google",
+    "prettier"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error"
+    ],
+    "no-console": "off",
+    "camelcase": "off",
+    "arrow-body-style": [
+      "error",
+      "always"
+    ],
+    "func-style": [
+      "error",
+      "expression",
+      {
+        "allowArrowFunctions": true
+      }
+    ],
+    "block-scoped-var": "error",
+    "no-plusplus": "error",
+    "eqeqeq": [
+      "error",
+      "always"
+    ],
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": true,
+        "classes": true,
+        "variables": true
+      }
+    ],
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
+    "prefer-arrow-callback": "error",
+    "prefer-const": "error"
+  }
+}
