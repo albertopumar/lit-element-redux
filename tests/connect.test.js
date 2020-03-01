@@ -3,6 +3,7 @@ import connect from '../src/connect';
 import createStore from '../src/createStore';
 import counterReducer, { operations } from './__mocks__';
 import MockComponent from './__mocks__/MockComponent';
+import MockSimpleClass from './__mocks__/MockSimpleClass';
 
 describe("createStore test", () => {
 
@@ -12,6 +13,8 @@ describe("createStore test", () => {
   // Mock element connected to redux using a function as mapDispatchToProps
   let mockConnectedFunction;
   let ConnectedFunctionComponent;
+
+  let ConnectedSimpleClass;
 
   beforeAll(() => {
     // Initialize the store before running all the tests
@@ -36,6 +39,17 @@ describe("createStore test", () => {
     ConnectedFunctionComponent = connect(mapStateToProps, mapDispatchToPropsFunction)(MockComponent);
     window.customElements.define('mock-connected-function', ConnectedFunctionComponent);
     mockConnectedFunction = document.createElement('mock-connected-function');
+
+    ConnectedSimpleClass = connect(mapStateToProps, mapDispatchToProps)(MockSimpleClass);
+  });
+
+  it('works with simple javascript class', () => {
+    const mockConnectedSimpleClass = new ConnectedSimpleClass();
+    
+    mockConnectedSimpleClass.connectedCallback();
+    mockConnectedSimpleClass.disconnectedCallback();
+
+    expect(mockConnectedSimpleClass).toBeDefined();
   });
 
   it('connect give you access to the store', () => {
