@@ -2,15 +2,16 @@ import { combineReducers } from 'redux';
 import connect from '../src/connect';
 import createStore from '../src/createStore';
 import counterReducer, { operations } from './__mocks__';
+import MockComponent from './__mocks__/MockComponent';
 
 describe("createStore test", () => {
 
   // Mock element connected to redux using an object as mapDispatchToProps
-  let ConnectedClassObject;
-  let mockConnectedClassObject;
+  let mockConnectedObject;
+  let ConnectedObjectComponent;
   // Mock element connected to redux using a function as mapDispatchToProps
-  let ConnectedClassFunction;
-  let mockConnectedClassFunction;
+  let mockConnectedFunction;
+  let ConnectedFunctionComponent;
 
   beforeAll(() => {
     // Initialize the store before running all the tests
@@ -27,41 +28,49 @@ describe("createStore test", () => {
       decrement: () => dispatch(operations.decrement())
     });
 
-    class MyTestClass {}
+    // Define components describing all options
+    ConnectedObjectComponent = connect(mapStateToProps, mapDispatchToProps)(MockComponent);
+    window.customElements.define('mock-connected-object', ConnectedObjectComponent);
+    mockConnectedObject = document.createElement('mock-connected-object');
 
-    ConnectedClassObject = connect(mapStateToProps, mapDispatchToProps)(MyTestClass);
-    mockConnectedClassObject = new ConnectedClassObject();
-
-    ConnectedClassFunction = connect(mapStateToProps, mapDispatchToPropsFunction)(MyTestClass);
-    mockConnectedClassFunction = new ConnectedClassFunction();
+    ConnectedFunctionComponent = connect(mapStateToProps, mapDispatchToPropsFunction)(MockComponent);
+    window.customElements.define('mock-connected-function', ConnectedFunctionComponent);
+    mockConnectedFunction = document.createElement('mock-connected-function');
   });
 
   it('connect give you access to the store', () => {
-    expect(mockConnectedClassObject.counter).toBeDefined();
+    expect(mockConnectedObject.counter).toBeDefined();
   });
 
   it('connect give you access to dispatch functions', () => {
-    mockConnectedClassObject.increment();
-    expect(mockConnectedClassObject.increment).toBeDefined();
+    mockConnectedObject.increment();
+    expect(mockConnectedObject.increment).toBeDefined();
   });
 
   it('mapDispatchToProps can be an object', () => {
-    mockConnectedClassObject.decrement();
-    expect(mockConnectedClassObject.decrement).toBeDefined();
+    mockConnectedObject.decrement();
+    expect(mockConnectedObject.decrement).toBeDefined();
   });
 
   it('mapDispatchToProps can be a function', () => {
-    mockConnectedClassFunction.decrement();
-    expect(mockConnectedClassFunction.decrement).toBeDefined();
+    mockConnectedFunction.decrement();
+    expect(mockConnectedFunction.decrement).toBeDefined();
   });
 
   it('properties to be defined', () => {
-    expect(ConnectedClassObject.properties.counter).toBeDefined();
+    expect(ConnectedObjectComponent.properties.counter).toBeDefined();
   });
 
   it('connected callback subscribes to store changes when called', () => {
-    mockConnectedClassObject.connectedCallback();
+    document.body.append(mockConnectedObject);
 
-    expect(mockConnectedClassObject._storeUnsubscribe).toBeDefined();
+    expect(mockConnectedObject._storeUnsubscribe).toBeDefined();
+  });
+
+  it('disconnected callback clear the subscription', () => {
+    document.body.removeChild(mockConnectedObject);
+    const previousCounter = mockConnectedObject.counter;
+    mockConnectedObject.increment();
+    expect(mockConnectedObject.counter).toBe(previousCounter);
   });
 });
