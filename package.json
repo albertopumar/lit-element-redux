@@ -1,6 +1,6 @@
 {
   "name": "lit-element-redux",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Redux connector for lit-element",
   "main": "index.js",
   "scripts": {
